@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Database </title>
+    <link rel="stylesheet" href="../static/css/style2.css">
+<style>
+
+
+</style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+
+        <li class="navElement"> <a href="/"> Home </a> </li>
+            <li class="navElement"> <a href="/database"> Database </a> </li>
+            <li class="navElement"> <a href="/detailed_preiew"> Detailed Preview </a> </li>
+            <li class="navElement"> <a href="/about"> About  </a> </li>
+
+        </ul>
+     </nav>
+<h2> Database </h2>
+<!--    <div class="content">-->
+    <table class="fl-table">
+        <tr>
+            <th>Date & Time</th>
+            <th>Plate</th>
+        </tr>
+        {%for row in data%}
+            <tr>
+            <td>{{row[0]}}</td><br>
+            <td>{{row[1]}}</td>
+            </tr>
+        {%endfor%}
+    </table>
+
+ <form  method="post" action = "/downnload_data" enctype ="multipart/form-data" >
+
+            <button type="submit" id="submit" formaction="/downnload_data" > Download </button>
+
+            </form>
+
+</body>
+</html>

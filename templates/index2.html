@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+    .img {
+    width: 100%;
+    }
+    body {
+    overflow: hidden;
+    }
+
+    </style>
+
+</head>
+<body>
+
+
+    <div class="background-image">
+        <img class="img" src="../static/40047.jpg" alt="fbr"  >
+    </div>
+
+
+    <div class="content">
+    <nav id="navbar">
+        <ul>
+
+        <li class="navElement"> <a href="/"> Home </a> </li>
+            <li class="navElement"> <a href="/database"> Database </a> </li>
+            <li class="navElement"> <a href="/detailed_preiew"> Detailed Preview </a> </li>
+            <li class="navElement"> <a href="/about"> About  </a> </li>
+
+        </ul>
+     </nav>
+     <!-- header -->
+     <header>
+
+
+        <div class="container1">
+
+            <h1 id="c1Heading">Enter a Vehicle Image</h1>
+
+            <form  method="post" action = "/submit" enctype ="multipart/form-data" >
+
+            <label for="img1" id="labImg">Select Image</label>
+            <input type="file" name="img1" id="imgInp" class="custom-file-upload" />
+
+
+            <button type="submit" id="submit" formaction="/submit" > Submit </button>
+
+            <button type="submit" formaction="/reset_session" id="reset"> Reset Session </button>
+<!--                # formaction="/reset_session"-->
+            </form>
+
+        </div>
+
+    </div>
+</body>
+</html>

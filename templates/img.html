@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Details</title>
+</head>
+<style>
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#i1 {
+    margin-left: 276px;
+    margin-top: 140px;
+    display: inline-block;
+}
+
+#i2 {
+    margin-left: 403px;
+    display: inline-block;
+    margin-top: 140px;
+}
+
+#i3{
+margin-left: 276px;
+display: inline-block;
+}
+
+#i4{
+margin-left: 585px;
+display: inline-block;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#img1{
+    display: inline-block;
+        margin-left: 106px;
+}
+
+#img2{
+    display: inline-block;
+        margin-left: 196px;
+}
+
+#img3{
+    display: inline-block;
+        margin-left: 106px;
+}
+
+#txt{
+    display: inline-block;
+        margin-left: 955px;
+        font-weight: bold;
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+#navbar{
+    /* background-color:lightcyan; */
+    background-color: #BC986A;
+    background-color: gray;
+    /* margin:auto; */
+    border: rgba(240, 221, 45, 0.769) solid 3px;
+    border: white 3px solid;
+    /* padding:5px; */
+    border-radius: 10px;
+    position: absolute;
+    top:30px;
+    right:50%;
+    left:30%;
+    width: 600px;
+    height:75px;
+    opacity: 0.7;
+
+
+
+}
+
+#navbar li a{
+    text-decoration: none;
+    /* background-color:blueviolet; */
+
+    color: rgb(80, 0, 80);
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    z-index: 100;
+
+
+}
+
+#navbar li a:hover{
+    text-decoration: none;
+
+    color:rgb(0, 46, 103);
+    font-size: 19px;
+    font-weight: 600;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    cursor: pointer;
+    text-decoration: underline;
+
+    text-decoration-thickness: 3px;
+
+}
+
+#navbar ul{
+    overflow: auto;
+}
+
+#navbar li{
+    float: left;
+    list-style: none;
+    margin: 5px 5px;
+    color: aliceblue;
+    padding: 3px 15px;
+
+}
+
+</style>
+<body>
+    <nav id="navbar">
+        <ul>
+
+        <li class="navElement"> <a href="/"> Home </a> </li>
+            <li class="navElement"> <a href="/database"> Database </a> </li>
+            <li class="navElement"> <a href="/detailed_preiew"> Detailed Preview </a> </li>
+            <li class="navElement"> <a href="/about"> About  </a> </li>
+
+        </ul>
+     </nav>
+
+    <h2 id = "i1" > Input Image</h2>  <h2 id = "i2" > Detected Image</h2>
+    <br> <br>
+    <img src={{input}} alt="path not found" width="400px" height="350px" id= "img1">
+    <img src={{detected}} alt="path not found" width="400px" height="350px" id = "img2">
+    <br><br>
+    <h2 id = "i3"> Number Plate</h2>      <h2 id="i4"> Text </h2>
+
+    <br><br>
+    <span id = "txt">
+        easy-ocr: {{easyocr_text}}
+    </span>
+
+    <img src={{cropped}} alt="path not found" id="img3"> <br>
+<!--    pytesseract-ocr: {{text}}  <br>-->
+
+
+</body>
+</html>
