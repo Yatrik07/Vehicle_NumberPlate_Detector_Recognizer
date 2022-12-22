@@ -19,12 +19,14 @@ app =Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/files'
 app.config['SECRET_KEY'] = 'supersecretkey'
 
-database = db = DBOperations()
+
 @app.route('/', methods=['GET', "POST"])
 @cross_origin()
 def home_page():
+    database = db = DBOperations()
     # logger.write_logs("Someone Entered Homepage, Rendering Homepage!")
     database.create_Database_Table()
+
     return render_template("index2.html")
 
 
@@ -33,14 +35,18 @@ def home_page():
 def prediction_page():
     try:
         if request.method == 'POST':
-
+            database = db = DBOperations()
+            global detected_path, cropped_path, imageFilePath, easyocr_text
             Imgfile = request.files['img1']
+            # fol = request.files['folder']
+
             print('name',Imgfile, Imgfile.filename, type(Imgfile), sep='/n')
             # print(Imgfile.filename, type(Imgfile.filename))
             # Imgfile.save('static/files/'+secure_filename(Imgfile.filename))
             imageFilePath = 'static/files/inputImage.'+str(secure_filename(Imgfile.filename).split('.')[-1])
             Imgfile.save( imageFilePath )
             print(imageFilePath)
+            # print(fol)
             # print('static/files/'+Imgfile.filename)
             
             # model = load_model()
@@ -57,28 +63,39 @@ def prediction_page():
             # print(path)
             print(detected_path, cropped_path)
 
-            text = read_number(cropped)
+            # text = read_number(cropped)
             easyocr_text = apply_easyocr((cropped))
             database.enter_recordTo_Table(str(easyocr_text))
 
-            return render_template("img.html", input = r'static\files\resized_input_img.jpg', detected = detected_path, cropped = cropped_path, text=text, easyocr_text= easyocr_text) # , img_path_final = final_path
+
+            return render_template("img.html", input = r'static\files\resized_input_img.jpg', detected = detected_path, cropped = cropped_path, easyocr_text= easyocr_text) # , img_path_final = final_path
         
     except Exception as e:
-        if "error: (-215:Assertion failed) !buf.empty() in function 'cv::imdecode_" in str(e):
-            return render_template("error.html", message = "No File Selected.")
+        if "cv::resize" in str(e):
+            return render_template("error.html", message=f"Please select an image")
+        elif "(-215:Assertion failed)" in str(e):
+            return render_template("error.html", message = f"No File Selected.")
         else:
             return render_template("error.html", message = "No Number Plate detected in image.")
-            
 
 
-@app.route('/retrain', methods=[ "GET", "POST"])
+@app.route('/about', methods=["GET", "POST"])
 @cross_origin()
-def retrain_model():
-    pass
+def about():
+    return render_template("about.html")
+
+
+@app.route('/detailed_preiew', methods=["GET", "POST"])
+@cross_origin()
+def detailed_preiew():
+    return render_template("img.html", input=r'static\files\resized_input_img.jpg', detected=detected_path,
+                           cropped=cropped_path, easyocr_text=easyocr_text)  # , img_path_final = final_path
+
 
 @app.route('/database', methods=[ "GET", "POST"])
 @cross_origin()
 def display_data():
+    database = db = DBOperations()
     _, rows = database.showTable()
     # print("start", rows, dir(rows), "end")
     return render_template('db.html', data=rows)
@@ -110,4 +127,5 @@ def download():
 
 if __name__ == "__main__":
     app.run(port=8000)
+
 
