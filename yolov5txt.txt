@@ -1,0 +1,3 @@
+https://drive.google.com/drive/folders/1qzvMznXJTB1SUBEpxnVN350bHwyvDNZY?usp=share_link
+
+# Get file from here and paste the folder in project folder nammed "yolov5"
