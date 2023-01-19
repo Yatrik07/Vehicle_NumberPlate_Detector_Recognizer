@@ -1,4 +1,4 @@
-# Project : Automatic Number Plate Detection and Recognition
+# Project : Automatic Number Plate Detection and Recognition (ANPR)
 
 ### Problem Statement
 Automatic vehicle license plate detection and recognition is a key technique in most
