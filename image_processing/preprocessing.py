@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 from data_ingestion.data_ingestion import getImage
 
 
+def resize(path):
+    img = cv2.imread(path)
+    op  = resizeAndScale(img)
+    return op
+
 def resizeAndScale(img, image_shape=(225, 225)):
     '''
     Function Accepts an image and rescale to 0 - 1 range and resizes it to the given IMAGE_SHAPE
