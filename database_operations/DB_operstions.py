@@ -1,5 +1,5 @@
 import sqlite3
-from App_Logging.Logging import get_logs
+# from App_Logging.Logging import get_logs
 import pandas as pd
 from datetime import datetime
 
@@ -9,7 +9,8 @@ current_datetime = datetime.now()
 
 class DBOperations:
     def __init__(self):
-        self.logger = get_logs( open("Logs//DatabaseOperations.txt" , "a+"))
+        # self.logger = get_logs( open("Logs//DatabaseOperations.txt" , "a+"))
+        pass
 
     def create_Database_Table(self):
         """
@@ -24,12 +25,12 @@ class DBOperations:
 
         Written By : Yatrik Shah
         """
-        self.logger.write_logs("Entered function create_Database_Table.")
+        # self.logger.write_logs("Entered function create_Database_Table.")
         conn = sqlite3.connect('database//predictionDatabase.db')
-        self.logger.write_logs("Created / Connected prediction Database successfully!")
+        # self.logger.write_logs("Created / Connected prediction Database successfully!")
         cursor_obj = conn.cursor()
         cursor_obj.execute('''CREATE TABLE if not exists Predictions(Time VARCHAR(25), Number_Plate VARCHAR(15))'''); # Sr INTEGER AUTOINCREMENT,
-        self.logger.write_logs("Train Table created successfully!")
+        # self.logger.write_logs("Train Table created successfully!")
         conn.close()
 
     def enter_recordTo_Table(self ,number_plate ):
@@ -45,7 +46,7 @@ class DBOperations:
 
         Written By : Yatrik Shah
         """
-        self.logger.write_logs("Entered function enter_recordTo_Table.")
+        # self.logger.write_logs("Entered function enter_recordTo_Table.")
         conn = sqlite3.connect('database//predictionDatabase.db')
         cursor_obj = conn.cursor()
 
@@ -70,7 +71,7 @@ class DBOperations:
 
         Written By : Yatrik Shah
         """
-        self.logger.write_logs("Entered function showTable.")
+        # self.logger.write_logs("Entered function showTable.")
         conn = sqlite3.connect('database//predictionDatabase.db')
         cursor_obj = conn.cursor()
         output = cursor_obj.execute("select * from Predictions")
@@ -105,14 +106,14 @@ class DBOperations:
 
         Written By : Yatrik Shah
         """
-        self.logger.write_logs("Entered function dropTabel.")
+        # self.logger.write_logs("Entered function dropTabel.")
         conn = sqlite3.connect('database//predictionDatabase.db')
         cursor_obj = conn.cursor()
         cursor_obj.execute('''drop table if exists Predictions''')
         conn.commit()
         conn.close()
         print("entered droptable.")
-        self.logger.write_logs("Table Train dropped successfully.")
+        # self.logger.write_logs("Table Train dropped successfully.")
 
     def show_all_tables(self):
         """
@@ -143,7 +144,7 @@ class DBOperations:
 
         Written By : Yatrik Shah
         """
-        self.logger.write_logs("Entered function Dataframetodatabase.")
+        # self.logger.write_logs("Entered function Dataframetodatabase.")
         conn = sqlite3.connect('TrainingDatabase/TrainingData.db')
         try:
             data.to_sql(name='Train', con=conn , index=False)
